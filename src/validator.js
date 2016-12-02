@@ -50,11 +50,11 @@ Validator.prototype = {
    * @return {boolean} Whether it passes; true = passes, false = fails
    */
   check: function() {
-    var self = this;
+    var input = this.input;
 
     for (var attribute in this.rules) {
       var attributeRules = this.rules[attribute];
-      var inputValue = this._objectPath(this.input, attribute);
+      var inputValue = this._objectPath(input, attribute);
 
       if (this._hasRule(attribute, ['sometimes']) && !this._suppliedWithData(attribute)) {
         continue;
@@ -68,7 +68,7 @@ Validator.prototype = {
           continue;
         }
 
-        rulePassed = rule.validate(inputValue, ruleOptions.value, attribute);
+        rulePassed = rule.validate(inputValue, ruleOptions.value, attribute, undefined, input);
         if (!rulePassed) {
           this._addFailure(rule);
         }
@@ -91,6 +91,7 @@ Validator.prototype = {
    */
   checkAsync: function(passes, fails) {
     var _this = this;
+    var input = this.input;
     passes = passes || function() {};
     fails = fails || function() {};
 
@@ -113,13 +114,13 @@ Validator.prototype = {
         var resolverIndex = asyncResolvers.add(rule);
         rule.validate(inputValue, ruleOptions.value, attribute, function() {
           asyncResolvers.resolve(resolverIndex);
-        });
+        }, input);
       };
     };
 
     for (var attribute in this.rules) {
       var attributeRules = this.rules[attribute];
-      var inputValue = this._objectPath(this.input, attribute);
+      var inputValue = this._objectPath(input, attribute);
 
       if (this._hasRule(attribute, ['sometimes']) && !this._suppliedWithData(attribute)) {
         continue;
@@ -133,7 +134,6 @@ Validator.prototype = {
         if (!this._isValidatable(rule, inputValue)) {
           continue;
         }
-
         validateRule(inputValue, ruleOptions, attribute, rule)();
       }
     }
