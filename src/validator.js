@@ -50,6 +50,7 @@ Validator.prototype = {
    * @return {boolean} Whether it passes; true = passes, false = fails
    */
   check: function() {
+    var _this = this;
     var input = this.input;
 
     for (var attribute in this.rules) {
@@ -68,7 +69,7 @@ Validator.prototype = {
           continue;
         }
 
-        rulePassed = rule.validate(inputValue, ruleOptions.value, attribute, undefined, input);
+        rulePassed = rule.validate(inputValue, ruleOptions.value, attribute, undefined, _this);
         if (!rulePassed) {
           this._addFailure(rule);
         }
@@ -114,7 +115,7 @@ Validator.prototype = {
         var resolverIndex = asyncResolvers.add(rule);
         rule.validate(inputValue, ruleOptions.value, attribute, function() {
           asyncResolvers.resolve(resolverIndex);
-        }, input);
+        }, _this);
       };
     };
 

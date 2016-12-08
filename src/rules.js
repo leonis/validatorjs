@@ -252,9 +252,10 @@ Rule.prototype = {
    * @param  {mixed} ruleValue
    * @param  {string} attribute
    * @param  {function} callback
+   * @param  {Validator} validator
    * @return {boolean|undefined}
    */
-  validate: function(inputValue, ruleValue, attribute, callback, input) {
+  validate: function(inputValue, ruleValue, attribute, callback, validator) {
     var _this = this;
     this._setValidatingData(attribute, inputValue, ruleValue);
     if (typeof callback === 'function') {
@@ -264,12 +265,12 @@ Rule.prototype = {
       };
 
       if (this.async) {
-        return this.fn.apply(this, [inputValue, ruleValue, attribute, handleResponse, input]);
+        return this.fn.apply(this, [inputValue, ruleValue, attribute, handleResponse, validator]);
       } else {
-        return handleResponse(this.fn.apply(this, [inputValue, ruleValue, attribute, input]));
+        return handleResponse(this.fn.apply(this, [inputValue, ruleValue, attribute, validator]));
       }
     }
-    return this.fn.apply(this, [inputValue, ruleValue, attribute, input]);
+    return this.fn.apply(this, [inputValue, ruleValue, attribute, validator]);
   },
 
   /**
