@@ -17,8 +17,8 @@ module.exports = {
         string  : ":attributeは:min文字以上で入力してください。"
     },
     max : {
-        numeric : ":attributeは:max以内で入力してください。",
-        string  : ":attributeは:max文字以内で入力してください。"
+        numeric : ":attributeは:max以下で入力してください。",
+        string  : ":attributeは:max文字以下で入力してください。"
     },
     not_in      : "選択された:attributeは無効です。",
     numeric     : ":attributeは数値で入力してください。",
