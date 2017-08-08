@@ -30,6 +30,6 @@ module.exports = {
         string  : ":attributeは:size文字で入力してください。"
     },
     url        : ":attributeは正しいURIを入力してください。",
-    regex      : ":attributeの値 \":value\" はパターンにマッチする必要があります。",
+    regex      : ":attributeの値は \":regex\" のパターンにマッチする必要があります。",
     attributes : {}
 };
