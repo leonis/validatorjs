@@ -23,7 +23,7 @@ module.exports = {
     not_in      : "選択された:attributeは無効です。",
     numeric     : ":attributeは数値で入力してください。",
     required    : ":attributeは必須です。",
-    required_if : ":otherは:valueになったら:attributeは必須です。",
+    required_if : ":otherが:valueのとき:attributeは必須です。",
     same        : ":attributeと:sameは同じでなければなりません。",
     size        : {
         numeric : ":attributeは:sizeを入力してください。",

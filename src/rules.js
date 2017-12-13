@@ -372,7 +372,7 @@ var manager = {
    *
    * @type {Array}
    */
-  implicitRules: ['required', 'required_if', 'accepted'],
+  implicitRules: ['required', 'required_if', 'accepted', 'not_lr_space'],
 
   /**
    * Get rule by name
